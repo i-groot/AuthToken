@@ -1,0 +1,30 @@
+[
+  {
+    "url": "/app/v1/user",
+    "method": "POST"
+  },
+  {
+    "url": "/app/v1/user/login",
+    "method": "POST"
+  },
+  {
+    "url": "/app/v1/book",
+    "method": "POST"
+  },
+  {
+    "url": "/app/v1/book",
+    "method": "GET"
+  },
+  {
+    "url": "/app/v1/book/{id}",
+    "method": "PUT"
+  },
+  {
+    "url": "/app/v1/book/{id}",
+    "method": "DELETE"
+  },
+  {
+    "url": "/app/v1/book/user/{userId}",
+    "method": "GET"
+  }
+]

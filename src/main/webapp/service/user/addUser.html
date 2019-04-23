@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <script type="text/javascript" src="/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/AuthToken_war_exploded/js/httpUtils.js"></script>
+    <script type="text/javascript" src="/AuthToken_war_exploded/service/user/userService.js"></script>
+    <script>
+        $(function () {
+            $("#addBtn").click(function () {
+                var username = $("#usernameId").val();
+                var password = $("#usernameId").val();
+                if (!username) {
+                    alert("name is empty, please input name.")
+                    return;
+                }
+                if (!username) {
+                    alert("name is empty, please input name.")
+                    return;
+                }
+                var req = {};
+                req.name = username;
+                req.password = password;
+                synPost("/app/v1/user", req, function () {
+                    window.location.href("./login.html");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div>
+            <span>Name:</span>
+            <input id="usernameId" type="text">
+        </div>
+        <div>
+            <span>Password:</span>
+            <input id="passwrdId" type="password">
+        </div>
+        <div>
+            <button id="addBtn">Do</button>
+        </div>
+    </div>
+</body>
+</html>

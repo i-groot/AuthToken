@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth Token</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/httpUtils.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#addUserBtn").click(function(){
+                window.location.href = "service/user/addUser.html";
+            });
+            $("#loginBtn").click(function(){
+                window.location.href = "service/user/login.html";
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h1>Welcome to join us.</h1>
+    <br>
+    <button id="addUserBtn">Sign Up</button>
+    <br>
+    <button id="loginBtn">Sign In</button>
+    <!--<br>
+    <button id="signUp">Sign up</button>
+
+    <button id="signIn">Sign in</button>
+
+    <div id="content"></div>-->
+</body>
+</html>
