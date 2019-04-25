@@ -3,31 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>Auth Token</title>
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/httpUtils.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!--<script type="text/javascript" src="js/jquery-3.3.1.js"></script>-->
+    <script type="text/javascript" src="js/httputils.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/service.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#addUserBtn").click(function(){
-                window.location.href = "service/user/addUser.html";
+            var bookId;
+            var books;
+            // health check
+            healthCheck(function (rsp) {
+                if (rsp.retCode == _retCode.OPER_FAIL) {
+                    throw new Error("Health Check Error!");
+                }
+                console.log("Health Check OK!");
             });
+
+            // add User
+            $("#addUBtn").click(function(){
+                var req = {
+                    name : Math.random().toString(16).substring(2),
+                    password : "aaa"
+                }
+                $("#contentId").text("");
+                addUser(req, function (rsp) {
+                    operaRsp(rsp);
+                })
+            });
+
+            // login
             $("#loginBtn").click(function(){
-                window.location.href = "service/user/login.html";
+                var req = {
+                    name : "aaa",
+                    password : "aaa"
+                }
+                $("#contentId").text("");
+                login(req, function (rsp) {
+                    operaRsp(rsp);
+                })
             });
+
+            // logout
+            $("#logoutBtn").click(function(){
+                $("#contentId").text("");
+                logout(function (rsp) {
+                    operaRsp(rsp);
+                });
+            });
+
+            // add book
+            $("#addBBtn").click(function(){
+                var req = {
+                    name : "English_" + Math.random().toString(16).substring(2),
+                    num : Math.round(Math.random() * 100)
+                }
+                $("#contentId").text("");
+                addBook(req, function (rsp) {
+                    operaRsp(rsp);
+                    bookId = rsp && rsp.data && rsp.data.id ? rsp.data.id : "bookId";
+                })
+            });
+
+            // upd book
+            $("#updBBtn").click(function(){
+                var req = {
+                    num : Math.round(Math.random() * 100)
+                }
+                bookId = books && books.length > 0 ? books[0].id : null;
+                if (!bookId) {
+                    alert("book id is empty, please query all books first.");
+                    return;
+                }
+                $("#contentId").text("");
+                updBook(req, bookId, function (rsp) {
+                    operaRsp(rsp);
+                })
+            });
+
+            // del book
+            $("#delBBtn").click(function(){
+                bookId = books && books.length > 0 ? books[0].id : null;
+                if (!bookId) {
+                    alert("book id is empty, please query all books first.");
+                    return;
+                }
+                $("#contentId").text("");
+                delBook(bookId, function (rsp) {
+                    operaRsp(rsp);
+                    $("#queryBsBtn").click();
+                })
+            });
+
+            // query books
+            $("#queryBsBtn").click(function(){
+                $("#contentId").text("");
+                queryBooks(function (rsp) {
+                    operaRsp(rsp);
+                    books = rsp && rsp.data ? rsp.data : null;
+                })
+            });
+
+            // query book by id
+            $("#queryBBtn").click(function(){
+                bookId = books && books.length > 0 ? books[0].id : null;
+                if (!bookId) {
+                    alert("book id is empty, please query all books first.");
+                    return;
+                }
+                $("#contentId").text("");
+                queryBookById(bookId, function (rsp) {
+                    operaRsp(rsp);
+                })
+            });
+
         });
 
+        function operaRsp(rsp) {
+            if (rsp.retCode == _retCode.OPER_FAIL) {
+                var msg = "Request Error, message: " + rsp.exception + "."
+                $("#contentId").text(msg);
+                throw new Error(msg);
+            }
+            $("#contentId").text(JSON.stringify(rsp.data));
+        }
     </script>
 </head>
 <body>
-    <h1>Welcome to join us.</h1>
-    <br>
-    <button id="addUserBtn">Sign Up</button>
-    <br>
-    <button id="loginBtn">Sign In</button>
-    <!--<br>
-    <button id="signUp">Sign up</button>
+<h1>Hello World.</h1>
+    <div class="div1">
+        <div class="div11">
+            <button id="addUBtn" class="btn_class">注册</button>
+            <button id="loginBtn" class="btn_class">登录</button>
+            <button id="logoutBtn" class="btn_class">注销</button>
+            <button id="addBBtn" class="btn_class">添加新书</button>
+            <button id="updBBtn" class="btn_class">修改书数量</button>
+            <button id="delBBtn" class="btn_class">删除书</button>
+            <button id="queryBsBtn" class="btn_class">查询所有书</button>
+            <button id="queryBBtn" class="btn_class">根据编号查询书</button>
+        </div>
 
-    <button id="signIn">Sign in</button>
-
-    <div id="content"></div>-->
+        <div id="contentId" class="div12"></div>
+    </div>
 </body>
 </html>

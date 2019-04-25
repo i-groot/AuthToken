@@ -12,8 +12,8 @@
     </settings>
 
     <!--<typeAliases>
-        <typeAlias type="com.zhangxing.ssm.tokenhelper.model.Book" alias="book"></typeAlias>
-        <typeAlias type="com.zhangxing.ssm.tokenhelper.model.User" alias="user"></typeAlias>
+        <typeAlias type="Book" alias="book"></typeAlias>
+        <typeAlias type="User" alias="user"></typeAlias>
     </typeAliases>-->
 
 </configuration>

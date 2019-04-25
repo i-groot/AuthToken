@@ -11,7 +11,7 @@
 
   <name>authToken Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://localhost:8080</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,7 +19,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.0.9.RELEASE</spring.version>
     <jackson.asl.version>1.9.13</jackson.asl.version>
-    <jackson.version>2.9.0</jackson.version>
+    <jackson.version>2.9.8</jackson.version>
   </properties>
 
   <dependencies>
@@ -113,9 +113,9 @@
     </dependency>-->
   </dependencies>
 
-  <build>
+  <!--<build>
     <finalName>authToken</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;
       <plugins>
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
@@ -127,5 +127,5 @@
         </plugin>
       </plugins>
     </pluginManagement>
-  </build>
+  </build>-->
 </project>

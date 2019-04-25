@@ -39,10 +39,6 @@
 
     <!--数据源-->
     <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost/zhangxing?characterEncoding=utf8&amp;serverTimezone=UTC"></property>
-        <property name="username" value="root"></property>
-        <property name="password" value="root"></property>-->
         <property name="driverClassName" value="${driver}"></property>
         <property name="url" value="${url}"></property>
         <property name="username" value="${username}"></property>
@@ -51,7 +47,7 @@
 
     <!-- 扫描生成所有dao层 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zhangxing.ssm.tokenhelper.dao.mapper"></property>
+        <property name="basePackage" value="com.ssm.tokenhelper.dao.mapper"></property>
         <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
     </bean>
 

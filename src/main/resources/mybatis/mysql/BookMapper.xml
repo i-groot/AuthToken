@@ -2,33 +2,33 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhangxing.ssm.tokenhelper.dao.mapper.BookMapper">
+<mapper namespace="com.ssm.tokenhelper.dao.mapper.BookMapper">
 
-    <resultMap id="bookMap" type="com.zhangxing.ssm.tokenhelper.model.Book">
+    <resultMap id="bookMap" type="com.ssm.tokenhelper.model.Book">
         <result property="id" column="ID"></result>
         <result property="name" column="NAME"></result>
-        <result property="userId" column="USER_ID"></result>
+        <result property="num" column="NUM"></result>
     </resultMap>
 
-    <insert id="addBook" parameterType="com.zhangxing.ssm.tokenhelper.model.Book">
-        INSERT INTO BOOK('ID',"NAME","USER_ID")
-        VALUES (#{id}, #{name}, #{userId})
+    <insert id="addBook" parameterType="com.ssm.tokenhelper.model.Book">
+        INSERT INTO BOOK(ID,NAME,NUM)
+        VALUES (#{id}, #{name}, #{num})
     </insert>
 
-    <update id="updBook" parameterType="com.zhangxing.ssm.tokenhelper.model.Book">
-        UPDATE BOOK SET NAME = #{name} WHERE ID = #{id}
+    <update id="updBook" parameterType="com.ssm.tokenhelper.model.Book">
+        UPDATE BOOK SET NUM = #{num} WHERE ID = #{id}
     </update>
 
     <delete id="delBook" parameterType="java.lang.String">
         DELETE FROM BOOK WHERE ID = #{id}
     </delete>
 
-    <select id="queryBooks" resultMap="bookMap">
-        SELECT ID,NAME,USER_ID FROM BOOK WHERE USER_ID = #{userId}
+    <select id="queryBookById" resultMap="bookMap">
+        SELECT ID,NAME,NUM FROM BOOK WHERE ID = #{id}
     </select>
 
-    <select id="queryBookByUserId" resultMap="bookMap">
-        SELECT ID,NAME,USER_ID FROM BOOK
+    <select id="queryBooks" resultMap="bookMap">
+        SELECT ID,NAME,NUM FROM BOOK
     </select>
 
     <select id="healthCheck" resultType="int">

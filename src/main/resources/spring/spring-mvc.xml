@@ -14,7 +14,7 @@
     <!-- 自动注解 -->
     <mvc:annotation-driven />
     <!-- 自动扫描包 -->
-    <context:component-scan base-package="com.zhangxing.ssm.tokenhelper" />
+    <context:component-scan base-package="com.ssm.tokenhelper" />
     <!-- 静态资源引入 -->
     <mvc:default-servlet-handler />
 
