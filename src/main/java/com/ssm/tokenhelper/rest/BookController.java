@@ -40,7 +40,7 @@ public class BookController {
     {
         System.out.println("-----start delBook-------");
         bookService.delBook(id);
-        return new TextNode("Delete Success.");
+        return "Delete Success";
     }
 
     @GetMapping("/{id}")

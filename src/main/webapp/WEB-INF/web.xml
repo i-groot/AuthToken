@@ -54,7 +54,7 @@
         </init-param>
         <init-param>
             <param-name>unCheckUrls</param-name>
-            <param-value>/app/v1/health,/app/v1/user/login,/app/v1/user/logout</param-value>
+            <param-value>/app/v1/health,/app/v1/user,/app/v1/user/login,/app/v1/user/logout</param-value>
         </init-param>
     </filter>
 
@@ -72,5 +72,9 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 
 </web-app>

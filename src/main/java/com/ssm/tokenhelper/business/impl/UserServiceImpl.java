@@ -1,14 +1,11 @@
 package com.ssm.tokenhelper.business.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.TextNode;
 import com.ssm.tokenhelper.business.inf.UserService;
 import com.ssm.tokenhelper.dao.inf.UserDao;
 import com.ssm.tokenhelper.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
@@ -25,7 +22,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) throws Exception {
-        System.out.println("-----start add user service-----");
         checkUser(user);
         user.setId(UUID.randomUUID().toString());
         userDao.addUser(user);
@@ -45,7 +41,7 @@ public class UserServiceImpl implements UserService {
         String token = user1.getId() + "_" + user1.getName() + System.currentTimeMillis();
         HttpSession session = request.getSession();
         session.setAttribute("X-User-Token", token);
-        return new TextNode("Login Success.");
+        return "Login Success.";
     }
 
     private void checkUser(User user) throws Exception

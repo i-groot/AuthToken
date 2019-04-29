@@ -125,19 +125,28 @@ function sendAsynDelete(url,callback) {
  */
 function send(url, method, isAsync, request, callback, timeout) {
 
-    if (request){
+    if (!request){
+        request = {};
+    }
+    else {
         request = JSON.stringify(request);
     }
 
+    console.log('URL:' + url);
+
     var setting = {
-        url: formatUrl(url),
+        url: url,
         type: method,
         async: isAsync,
         data: request,
-        dataType: "json",
+        // dataType: "json",
         contentType: "application/json;charset=UTF-8",
         timeout: timeout ? timeout: 5000,
         success: function (result) {
+            if (result && /\.html$/.test(result)){
+                window.location.href = result;
+                return;
+            }
             var rsp = new CallbackRsp();
             rsp.retCode = _retCode.OPERA_SUCCESS;
             rsp.exception = null;
@@ -150,18 +159,4 @@ function send(url, method, isAsync, request, callback, timeout) {
         }
     };
     $.ajax(setting);
-}
-
-function formatUrl(url) {
-    if (!url) {
-        alert('url is empty.')
-        return new Error('url is empty.');
-    }
-    var random = Math.random().toString(16).substring(2);
-    if (url.indexOf('?') == -1) {
-        url += "?random=" + random;
-    } else {
-        url += "&random=" + random;
-    }
-    return url;
 }

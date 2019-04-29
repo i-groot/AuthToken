@@ -1,6 +1,5 @@
 package com.ssm.tokenhelper.rest;
 
-import com.fasterxml.jackson.databind.node.TextNode;
 import com.ssm.tokenhelper.dao.inf.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,6 @@ public class HealthController {
     {
         System.out.println("-----start healthCheck-------");
         dao.healthCheck();
-        return new TextNode("Health Check OK!");
+        return "HealthCheck Success!";
     }
 }
